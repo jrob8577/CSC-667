@@ -20,6 +20,7 @@ public class SimpleClient {
     PrintWriter out = new PrintWriter( socket.getOutputStream(), true );
     out.println( "Message " + counter );
     out.printf( "now: %s%n", LocalDateTime.now() );
+    // Something to think about: what would happen if END wasn't included here?
     out.println( "Some garbage and then the magic string END" );
   }
 

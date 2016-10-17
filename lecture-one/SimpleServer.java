@@ -28,6 +28,7 @@ public class SimpleServer {
       line = reader.readLine();
       System.out.println( "> " + line );
 
+      // Why do we need to do this?
       if( line.contains( "END" ) ) {
         break;
       }
