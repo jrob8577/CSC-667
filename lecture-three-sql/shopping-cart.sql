@@ -1,0 +1,37 @@
+DROP TABLE IF EXISTS customers CASCADE;
+CREATE TABLE IF NOT EXISTS customers (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
+  email VARCHAR(254) UNIQUE NOT NULL
+);
+DROP TABLE IF EXISTS addresses;
+CREATE TABLE IF NOT EXISTS addresses (
+  customer_id INTEGER REFERENCES customers,
+  address_one VARCHAR(255) NOT NULL,
+  address_two VARCHAR(255),
+  city VARCHAR(255) NOT NULL,
+  zip VARCHAR(10) NOT NULL,
+  is_billing BOOLEAN DEFAULT false
+);
+DROP TABLE IF EXISTS carts CASCADE;
+CREATE TABLE IF NOT EXISTS carts (
+  id SERIAL PRIMARY KEY,
+  customer_id INTEGER REFERENCES customers,
+  created_at TIMESTAMP DEFAULT now()
+);
+DROP TABLE IF EXISTS products CASCADE;
+CREATE TABLE IF NOT EXISTS products (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL,
+  price MONEY NOT NULL,
+  image_url VARCHAR(512)
+);
+DROP TABLE IF EXISTS cart_items;
+CREATE TABLE IF NOT EXISTS cart_items (
+  cart_id INTEGER REFERENCES carts,
+  product_id INTEGER REFERENCES products,
+  quantity INTEGER NOT NULL DEFAULT 1,
+  price MONEY NOT NULL
+);

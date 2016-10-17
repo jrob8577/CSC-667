@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS customers CASCADE;
+CREATE TABLE IF NOT EXISTS customers (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
+  email VARCHAR(254) UNIQUE NOT NULL
+);

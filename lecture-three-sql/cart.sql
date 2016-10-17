@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS carts CASCADE;
+CREATE TABLE IF NOT EXISTS carts (
+  id SERIAL PRIMARY KEY,
+  customer_id INTEGER REFERENCES customers,
+  created_at TIMESTAMP DEFAULT now()
+);
