@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Fetch Example</title>
+  </head>
+  <body>
+    <a href="#" id="click-me">Click Me</a>
+    <img id="result"></div>
+
+    <script>
+      const imageContainer = document.querySelector('#result');
+
+      document.querySelector('#click-me').addEventListener('click', event => {
+        event.preventDefault();
+
+        fetch('https://dog.ceo/api/breeds/image/random')
+          .then(result => result.json())
+          .then(({ status, message }) => {
+            console.log(status, message);
+            imageContainer.setAttribute('src', message);
+          })
+      });
+    </script>
+  </body>
+</html>
